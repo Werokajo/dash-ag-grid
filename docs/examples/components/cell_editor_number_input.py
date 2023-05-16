@@ -21,7 +21,7 @@ columnDefs = [
         "valueFormatter": {"function": """d3.format("($,.2f")(params.value)"""},
         "editable": True,
         "cellEditor": {"function": "NumberInput"},
-        "cellEditorParams" : {"placeholder": "Enter a number"}
+        "cellEditorParams" : {"placeholder": "Enter a number", "step":5}
     },
 ]
 
