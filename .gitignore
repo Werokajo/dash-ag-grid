@@ -1,5 +1,6 @@
 .DS_Store
 .vscode/
+.idea/
 
 # Build artifacts
 dash_ag_grid/*
