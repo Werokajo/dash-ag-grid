@@ -73,7 +73,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output("dbc-btn-simple-value-changed", "children"),
-    Input("dbc-btn-simple-btn-grid", "cellRendererData"),
+    Input("dbc-btn-simple-grid", "cellRendererData"),
 )
 def showChange(n):
     return json.dumps(n)

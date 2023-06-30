@@ -6,16 +6,16 @@ import colorlover
 
 wide_data = [
     {"Firm": "Acme", "2017": 13, "2018": 5, "2019": 10, "2020": 4},
-    {"Firm": "Olive", "2017": 3, "2018": 3, "2019": 13, "2020": 3},
+    {"Firm": "Olive", "2017": 3, "2018": 3, "2019": 11, "2020": 3},
     {"Firm": "Barnwood", "2017": 6, "2018": 7, "2019": 3, "2020": 6},
-    {"Firm": "Henrietta", "2017": -3, "2018": -10, "2019": -5, "2020": -6},
+    {"Firm": "Henrietta", "2017": 9, "2018": 5, "2019": 5, "2020": 6},
 ]
 df = pd.DataFrame(wide_data)
 
 app = Dash(__name__)
 
 
-def discrete_background_color_bins(df, n_bins=5, columns="all"):
+def discrete_background_color_bins(df, n_bins=5, columns="all", cl_qual="seq", cl_scale="Blues"):
     bounds = [i * (1.0 / n_bins) for i in range(n_bins + 1)]
     if columns == "all":
         df_numeric_columns = df.select_dtypes("number")
@@ -32,7 +32,8 @@ def discrete_background_color_bins(df, n_bins=5, columns="all"):
         if i == len(bounds) - 1:
             max_bound += 1
 
-        backgroundColor = colorlover.scales[str(n_bins)]["seq"]["Blues"][i - 1]
+        #backgroundColor = colorlover.scales[str(n_bins)]["seq"]["Blues"][i - 1]
+        backgroundColor = colorlover.scales[str(n_bins)][cl_qual][cl_scale][i - 1]
         color = "white" if i > len(bounds) / 2.0 else "inherit"
 
         styleConditions.append(
@@ -61,7 +62,7 @@ def discrete_background_color_bins(df, n_bins=5, columns="all"):
     return styleConditions, html.Div(legend, style={"padding": "5px 0 5px 0"})
 
 
-styleConditions, legend = discrete_background_color_bins(df)
+styleConditions, legend = discrete_background_color_bins(df, n_bins=9, cl_qual='div', cl_scale='RdYlGn')
 
 app.layout = html.Div(
     [

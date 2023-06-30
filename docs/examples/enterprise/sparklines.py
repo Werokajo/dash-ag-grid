@@ -94,10 +94,15 @@ app.layout = html.Div(
         ),
         dag.AgGrid(
             columnDefs=columnDefs,
+            columnState=[{"colId": "symbol","hide":False},
+                         {"colId": "name","hide":False},
+                         {"colId": "volume","hide":True},
+                         {"colId": "change","hide":True}
+                         ],
             rowData=data,
             enableEnterpriseModules=True,
             licenseKey="LICENSE_KEY_HERE",
-            columnSize="sizeToFit",
+            columnSize="responsiveSizeToFit",
         ),
         dcc.Markdown(
             """

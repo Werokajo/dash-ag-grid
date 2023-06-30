@@ -32,7 +32,7 @@ def discrete_background_color_bins(df, n_bins=5, columns="all"):
         if i == len(bounds) - 1:
             max_bound += 1
 
-        backgroundColor = colorlover.scales[str(n_bins)]["seq"]["Blues"][i - 1]
+        backgroundColor = colorlover.scales[str(n_bins)]["div"]["RdYlGn"][i - 1]
         color = "white" if i > len(bounds) / 2.0 else "inherit"
 
         styleConditions.append(
@@ -61,7 +61,7 @@ def discrete_background_color_bins(df, n_bins=5, columns="all"):
     return styleConditions, html.Div(legend, style={"padding": "5px 0 5px 0"})
 
 
-styleConditions, legend = discrete_background_color_bins(df, columns=["2018"])
+styleConditions, legend = discrete_background_color_bins(df, n_bins=9, columns=["2018"])
 
 columnDefs = [
     {"field": "Firm"},
